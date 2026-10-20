@@ -1,0 +1,1805 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GaiaCraft 記憶保存工作室｜把即將消失的地方，變成可以玩的世界</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #F7F4EE;
+      --bg-secondary: #EFECE4;
+      --bg-card: #FFFFFF;
+      --bg-dark: #1C2621;
+      --bg-dark-card: #26332D;
+      --text-main: #1F2421;
+      --text-muted: #5A625E;
+      --text-light: #F5F2EB;
+      --accent-amber: #B85D19;
+      --accent-amber-soft: #F3E5D8;
+      --accent-teal: #23574E;
+      --accent-teal-soft: #DDEAE6;
+      --border-color: #DCD6C8;
+      --border-dark: #384940;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-sm: 0 2px 8px rgba(31, 36, 33, 0.06);
+      --shadow-md: 0 10px 30px rgba(31, 36, 33, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --max-w: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* Demo Top Banner */
+    .demo-banner {
+      background-color: #111815;
+      color: #E2DEC9;
+      font-size: 0.8125rem;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #303E37;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .demo-banner strong {
+      color: #F4A261;
+      font-weight: 700;
+    }
+
+    /* Navigation */
+    .site-header {
+      background-color: rgba(247, 244, 238, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 33px;
+      z-index: 900;
+    }
+
+    .nav-container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--accent-teal);
+      background-color: var(--accent-teal-soft);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-amber);
+    }
+
+    .nav-cta {
+      background-color: var(--accent-teal);
+      color: #fff !important;
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background-color: #19413A;
+    }
+
+    /* Layout Helpers */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      margin-bottom: 2.75rem;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-amber);
+      margin-bottom: 0.6rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background-color: var(--accent-amber);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    .placeholder-tag {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.88em;
+      background-color: #FFF3CD;
+      color: #7A5200;
+      border: 1px dashed #D9A441;
+      padding: 0.05rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 3.5rem 0 4.5rem;
+      border-bottom: 1px solid var(--border-color);
+      background: radial-gradient(circle at 85% 20%, rgba(35, 87, 78, 0.07), transparent 45%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-badge span {
+      color: var(--accent-teal);
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      line-height: 1.22;
+      font-weight: 900;
+      margin-bottom: 1.2rem;
+      color: var(--text-main);
+    }
+
+    .hero-lead {
+      font-size: clamp(1.08rem, 1.8vw, 1.25rem);
+      font-weight: 500;
+      color: var(--accent-teal);
+      background-color: var(--accent-teal-soft);
+      border-left: 4px solid var(--accent-teal);
+      padding: 0.85rem 1.1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-body {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.85rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-amber);
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background-color: #9A4B11;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-secondary);
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .exhibit-frame {
+      background-color: var(--bg-card);
+      padding: 0.85rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+    }
+
+    .exhibit-img-wrap {
+      position: relative;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background-color: #162228;
+    }
+
+    .exhibit-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .exhibit-overlay-tag {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background-color: rgba(28, 38, 33, 0.85);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .exhibit-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .exhibit-sub-thumb {
+      margin-top: 0.85rem;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0.85rem;
+      align-items: center;
+      background-color: var(--bg-secondary);
+      padding: 0.65rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .exhibit-sub-thumb img {
+      width: 100%;
+      height: 68px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .exhibit-sub-thumb p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Impact Dashboard */
+    .dashboard-section {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin-bottom: 2.25rem;
+      flex-wrap: wrap;
+    }
+
+    .dashboard-header .section-title {
+      color: var(--text-light);
+      margin-bottom: 0.35rem;
+    }
+
+    .dashboard-header .eyebrow {
+      color: #F4A261;
+    }
+
+    .dashboard-header .eyebrow::before {
+      background-color: #F4A261;
+    }
+
+    .lab-note {
+      font-size: 0.82rem;
+      color: #B7C4BC;
+      background-color: var(--bg-dark-card);
+      border: 1px solid var(--border-dark);
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .metric-card {
+      background-color: var(--bg-dark-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .metric-label {
+      font-size: 0.82rem;
+      color: #B7C4BC;
+      margin-bottom: 0.65rem;
+    }
+
+    .metric-value {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .metric-value .placeholder-tag {
+      background-color: rgba(244, 162, 97, 0.16);
+      color: #F8C291;
+      border-color: #F4A261;
+      font-size: 0.9rem;
+    }
+
+    .metric-foot {
+      font-size: 0.78rem;
+      color: #95A79D;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 0.55rem;
+    }
+
+    .awards-panel {
+      background-color: var(--bg-dark-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 1.5rem;
+    }
+
+    .awards-block h3 {
+      font-size: 0.95rem;
+      color: #F4A261;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.85rem;
+    }
+
+    .awards-list {
+      list-style: none;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .awards-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      color: var(--text-light);
+    }
+
+    .badge-award {
+      font-size: 0.72rem;
+      background-color: rgba(244, 162, 97, 0.2);
+      color: #F8C291;
+      border: 1px solid rgba(244, 162, 97, 0.45);
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .badge-support {
+      font-size: 0.72rem;
+      background-color: rgba(129, 199, 172, 0.18);
+      color: #A8E6CF;
+      border: 1px solid rgba(129, 199, 172, 0.4);
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* 3-Step Methodology */
+    .method-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .method-tab {
+      text-align: left;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .method-tab:hover {
+      border-color: var(--accent-teal);
+    }
+
+    .method-tab[aria-selected="true"] {
+      background-color: var(--accent-teal);
+      color: #fff;
+      border-color: var(--accent-teal);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .method-step-num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-amber);
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    .method-tab[aria-selected="true"] .method-step-num {
+      color: #F8C291;
+    }
+
+    .method-tab-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .method-tab-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .method-tab[aria-selected="true"] .method-tab-sub {
+      color: #DDEAE6;
+    }
+
+    .method-detail-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .method-panel {
+      display: none;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .method-panel.active {
+      display: grid;
+    }
+
+    .method-panel h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .method-panel p {
+      color: var(--text-muted);
+      margin-bottom: 1.15rem;
+    }
+
+    .method-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .spec-box {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+    }
+
+    .spec-box strong {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--accent-teal);
+      margin-bottom: 0.25rem;
+    }
+
+    .spec-box span {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .method-visual {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+    }
+
+    .method-visual img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+    }
+
+    .method-visual-cap {
+      padding: 0.65rem 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Case Switcher */
+    .case-controls {
+      display: inline-flex;
+      background-color: var(--bg-secondary);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .case-btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .case-btn[aria-selected="true"] {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .case-panel {
+      display: none;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .case-panel.active {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .case-meta-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      background-color: var(--accent-teal-soft);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .case-title {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .case-desc {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .case-data-list {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+      margin-bottom: 1.5rem;
+      display: grid;
+      gap: 0.65rem;
+      font-size: 0.9rem;
+    }
+
+    .case-data-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0.75rem;
+    }
+
+    .case-data-row dt {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .case-data-row dd {
+      color: var(--text-main);
+    }
+
+    .case-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .case-gallery figure {
+      margin: 0;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .case-gallery figure.span-2 {
+      grid-column: span 2;
+    }
+
+    .case-gallery img {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+    }
+
+    .case-gallery figure.span-2 img {
+      height: 210px;
+    }
+
+    .case-gallery figcaption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 0.45rem 0.65rem;
+    }
+
+    /* Collaboration Pathways */
+    .pathway-selector {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pathway-btn {
+      background-color: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .pathway-btn:hover {
+      border-color: var(--accent-amber);
+    }
+
+    .pathway-btn[aria-selected="true"] {
+      border-color: var(--accent-amber);
+      background-color: var(--accent-amber-soft);
+    }
+
+    .pathway-role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .pathway-name {
+      font-family: var(--font-serif);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .pathway-panel {
+      display: none;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pathway-panel.active {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .pathway-list {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+      margin: 1.15rem 0;
+    }
+
+    .pathway-list li {
+      position: relative;
+      padding-left: 1.35rem;
+      font-size: 0.95rem;
+    }
+
+    .pathway-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--accent-amber);
+      font-weight: bold;
+    }
+
+    .pathway-cta-box {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+
+    .pathway-cta-box h4 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pathway-cta-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    /* Press Kit */
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .fact-sheet {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+
+    .fact-sheet h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .fact-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .fact-table th,
+    .fact-table td {
+      text-align: left;
+      padding: 0.65rem 0.4rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .fact-table th {
+      width: 34%;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .press-assets {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .asset-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.35rem;
+    }
+
+    .asset-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .logo-preview-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .logo-specimen {
+      padding: 1.1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      font-family: var(--font-serif);
+      font-weight: 900;
+    }
+
+    .logo-specimen.light {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+    }
+
+    .logo-specimen.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    .press-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .press-thumbs img {
+      width: 100%;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    .press-download-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .toast-msg {
+      font-size: 0.82rem;
+      color: var(--accent-teal);
+      font-weight: 600;
+      min-height: 1.25rem;
+      margin-top: 0.4rem;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-secondary);
+      padding: 2.5rem 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Responsive Mobile (375px+) */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .method-panel.active,
+      .case-panel.active,
+      .pathway-panel.active,
+      .press-grid,
+      .awards-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        position: static;
+      }
+
+      .section {
+        padding: 3rem 0;
+      }
+
+      .metrics-grid,
+      .method-tabs,
+      .pathway-selector,
+      .method-specs,
+      .case-gallery,
+      .logo-preview-row {
+        grid-template-columns: 1fr;
+      }
+
+      .case-gallery figure.span-2 {
+        grid-column: span 1;
+      }
+
+      .press-thumbs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .case-data-row {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+
+      .exhibit-sub-thumb {
+        grid-template-columns: 1fr;
+      }
+
+      .exhibit-sub-thumb img {
+        height: 120px;
+      }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Required Demo Banner -->
+  <div class="demo-banner" role="region" aria-label="示意稿提示">
+    <strong>DEMO・方向C：GaiaCraft 記憶保存工作室</strong>｜示意稿，非正式網站
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#top" class="brand">
+        <span class="brand-title">GaiaCraft</span>
+        <span class="brand-sub">記憶保存工作室</span>
+      </a>
+      <nav class="nav-links" aria-label="主要導覽">
+        <a href="#impact">影響力儀表板</a>
+        <a href="#methodology">三步轉譯方法</a>
+        <a href="#cases">實踐場域案例</a>
+        <a href="#collaborate">合作通道</a>
+        <a href="#presskit">Press Kit</a>
+        <a href="#collaborate" class="nav-cta">洽談專案合作</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span>ARCHIVE × LAB</span> 博物館特展敘事 × 數位記憶實驗室
+          </div>
+          <h1 class="hero-title">把即將消失的地方，<br>變成可以玩的世界。</h1>
+          <p class="hero-lead">
+            我們把耆老的記憶變成會記得你的 NPC。這套方法，可以帶到你的社區。
+          </p>
+          <p class="hero-body">
+            面對社區高齡化與地景變遷，傳統文字與影音紀錄常停留在靜態庫房。GaiaCraft 結合田野口述史、AI 語音與大型語言模型轉譯，將地方記憶鑄造為可探索、可對話的互動世界，讓下一代在遊玩中走進真實歷史。
+          </p>
+          <div class="hero-actions">
+            <a href="#collaborate" class="btn btn-primary">啟動社區／USR 合作方案</a>
+            <a href="https://frankfangcode.itch.io/gaiacraftyongan" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">試玩《沉村之歌》（itch.io）↗</a>
+            <a href="https://wenzhotw.github.io/nccu100/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">體驗《3D 政大》↗</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="exhibit-frame">
+            <div class="exhibit-img-wrap">
+              <img src="../../gaiacraft 網頁/img/underwater.jpg" alt="石碇永安水底聚落場景重建畫面">
+              <span class="exhibit-overlay-tag">特展檔案 #01｜石碇永安・翡翠水庫水底聚落</span>
+            </div>
+            <div class="exhibit-caption">
+              <span>《沉村之歌》水下記憶地景重建</span>
+              <span>狀態：已上架 itch.io 公開體驗</span>
+            </div>
+            <div class="exhibit-sub-thumb">
+              <img src="../../gaiacraft 網頁/img/village.jpg" alt="聚落歷史地景重現畫面">
+              <p><strong>地景與人物雙重保存：</strong>不僅重建消失的聚落空間，更透過 AI 記憶轉譯保留當事人敘事語氣與生命脈絡。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Dashboard Section -->
+    <section id="impact" class="dashboard-section" aria-labelledby="impact-heading">
+      <div class="container">
+        <div class="dashboard-header">
+          <div>
+            <span class="eyebrow">Impact Dashboard</span>
+            <h2 id="impact-heading" class="section-title">記憶保存影響力儀表板</h2>
+          </div>
+          <div class="lab-note">
+            實驗室數據紀律：已公開事實直接標示；未核實統計一律標註「〔待填〕」待田野清冊核對後填入。
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="metric-card">
+            <span class="metric-label">實踐場域數</span>
+            <div class="metric-value">3 個實踐場域</div>
+            <div class="metric-foot">政大・深坑・石碇永安（已展開）</div>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">訪談耆老人數</span>
+            <div class="metric-value"><span class="placeholder-tag">〔待填：訪談耆老人數〕</span></div>
+            <div class="metric-foot">涵蓋石碇永安、深坑等地方長輩</div>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">累積口述歷史時數</span>
+            <div class="metric-value"><span class="placeholder-tag">〔待填：口述錄音總時數〕</span></div>
+            <div class="metric-foot">含田野訪談錄音與逐字稿語料</div>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">累計體驗玩家與師生數</span>
+            <div class="metric-value"><span class="placeholder-tag">〔待填：累計玩家與觀展人數〕</span></div>
+            <div class="metric-foot">作品已上架 itch.io 與 Web 端公開體驗</div>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">外部肯定與支持</span>
+            <div class="metric-value">3 項競賽獲獎</div>
+            <div class="metric-foot">另獲 1 項永續行動提案經費支持</div>
+          </article>
+        </div>
+
+        <div class="awards-panel">
+          <div class="awards-block">
+            <h3>獲獎紀錄（已核實公開紀錄）</h3>
+            <ul class="awards-list">
+              <li>
+                <span class="badge-award">競賽獎項</span>
+                <span>政大 AI 跨域×永續創新競賽 <strong>佳作</strong></span>
+              </li>
+              <li>
+                <span class="badge-award">競賽獎項</span>
+                <span>第六屆中鼎永續生活實驗室獎 <strong>全國前 20・佳作</strong></span>
+              </li>
+              <li>
+                <span class="badge-award">競賽獎項</span>
+                <span>114 學年度全國人文社會永續行動創新應用競賽 <strong>佳作</strong></span>
+              </li>
+            </ul>
+          </div>
+          <div class="awards-block">
+            <h3>計畫經費支持（非競賽獎項）</h3>
+            <ul class="awards-list">
+              <li>
+                <span class="badge-support">經費支持</span>
+                <span>政大商學院永續行動提案競賽（商學院 LINE 永續驗證落地經費）</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3-Step Methodology Section -->
+    <section id="methodology" class="section" aria-labelledby="method-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Methodology</span>
+          <h2 id="method-heading" class="section-title">三步轉譯方法論：從田野錄音到可玩世界</h2>
+          <p class="section-desc">
+            我們將數位人文與 AI 工程模組化為可複製的三階段工作流，讓每個社區、學校與文化機構都能建立專屬的互動記憶庫。點選下方步驟檢視實驗室規格：
+          </p>
+        </div>
+
+        <div class="method-tabs" role="tablist" aria-label="三步轉譯方法切換">
+          <button type="button" class="method-tab" role="tab" id="tab-step-1" aria-selected="true" aria-controls="panel-step-1" data-step="1">
+            <span class="method-step-num">STEP 01｜FIELDWORK</span>
+            <div class="method-tab-title">田野與口述採集</div>
+            <div class="method-tab-sub">走進現場，記錄長輩生命史與消失地景線索</div>
+          </button>
+
+          <button type="button" class="method-tab" role="tab" id="tab-step-2" aria-selected="false" aria-controls="panel-step-2" data-step="2">
+            <span class="method-step-num">STEP 02｜AI TRANSLATION</span>
+            <div class="method-tab-title">AI 記憶轉譯</div>
+            <div class="method-tab-sub">語音辨識＋大型語言模型，建構不脫離史實的記憶庫</div>
+          </button>
+
+          <button type="button" class="method-tab" role="tab" id="tab-step-3" aria-selected="false" aria-controls="panel-step-3" data-step="3">
+            <span class="method-step-num">STEP 03｜PLAYABLE WORLD</span>
+            <div class="method-tab-title">會記得你的 NPC</div>
+            <div class="method-tab-sub">結合 3D／像素地景重建，化為跨世代可玩世界</div>
+          </button>
+        </div>
+
+        <div class="method-detail-card">
+          <!-- Step 1 Panel -->
+          <div id="panel-step-1" class="method-panel active" role="tabpanel" aria-labelledby="tab-step-1">
+            <div>
+              <span class="eyebrow">STEP 01・田野與口述</span>
+              <h3>深入社區現場：把記憶留在當事人的語境裡</h3>
+              <p>
+                在開始寫任何一行程式之前，團隊先進入社區進行深度田野調查、老照片翻拍與長輩口述訪談。我們不僅收集歷史事件，更記錄長輩對空間方位的描述、日常器物細節與敘事口吻。
+              </p>
+              <div class="method-specs">
+                <div class="spec-box">
+                  <strong>輸入素材（Input）</strong>
+                  <span>長輩口述訪談音檔、老照片、古地圖、地方文史志</span>
+                </div>
+                <div class="spec-box">
+                  <strong>倫理與查核（Verification）</strong>
+                  <span>受訪授權確認、地方文史脈絡交叉比對</span>
+                </div>
+                <div class="spec-box">
+                  <strong>長輩語錄範例</strong>
+                  <span><span class="placeholder-tag">〔待填：經受訪長輩授權之原音語錄〕</span></span>
+                </div>
+                <div class="spec-box">
+                  <strong>產出規格（Output）</strong>
+                  <span>結構化口述史料庫、空間復原標註圖</span>
+                </div>
+              </div>
+            </div>
+            <div class="method-visual">
+              <img src="../../gaiacraft 網頁/img/field-yongan.jpg" alt="團隊於石碇永安進行田野調查與紀錄">
+              <div class="method-visual-cap">田野紀錄：實地走訪石碇永安與社區現場，採集第一手空間與口述線索。</div>
+            </div>
+          </div>
+
+          <!-- Step 2 Panel -->
+          <div id="panel-step-2" class="method-panel" role="tabpanel" aria-labelledby="tab-step-2">
+            <div>
+              <span class="eyebrow">STEP 02・AI 記憶轉譯</span>
+              <h3>語音辨識 ＋ 大型語言模型：忠於口述的知識檢索架構</h3>
+              <p>
+                透過語音辨識（ASR）將長輩訪談轉為文字稿，並依主題、年代、地景切分為記憶片段。接著運用大型語言模型（LLM）設定人物背景與知識邊界，確保對話生成根植於真實訪談紀錄，不憑空捏造歷史。
+              </p>
+              <div class="method-specs">
+                <div class="spec-box">
+                  <strong>核心技術（Core Tech）</strong>
+                  <span>語音辨識轉寫 ＋ 大型語言模型記憶檢索與角色設定</span>
+                </div>
+                <div class="spec-box">
+                  <strong>防幻覺機制（Guardrails）</strong>
+                  <span>〔待確認：實際防幻覺做法〕</span>
+                </div>
+                <div class="spec-box">
+                  <strong>語料處理量</strong>
+                  <span><span class="placeholder-tag">〔待填：已結構化之記憶段落數〕</span></span>
+                </div>
+                <div class="spec-box">
+                  <strong>產出規格（Output）</strong>
+                  <span>具備個人生命史脈絡與對話狀態的 AI 記憶核心</span>
+                </div>
+              </div>
+            </div>
+            <div class="method-visual">
+              <img src="../../gaiacraft 網頁/img/yongan-real.jpg" alt="石碇永安實景與水庫地景對照">
+              <div class="method-visual-cap">地景與語料對照：將真實地景座標與長輩口述記憶片段進行精準映射。</div>
+            </div>
+          </div>
+
+          <!-- Step 3 Panel -->
+          <div id="panel-step-3" class="method-panel" role="tabpanel" aria-labelledby="tab-step-3">
+            <div>
+              <span class="eyebrow">STEP 03・可玩世界與互動 NPC</span>
+              <h3>會記得你的 NPC：在探索中建立跨世代連結</h3>
+              <p>
+                將轉譯後的記憶核心放入重建的 3D 或像素世界。當玩家在村落或校園中探索、向 NPC 提問時，NPC 不僅能講述當年故事，還能記住玩家先前的對話脈絡與互動進度，讓文史體驗從「單向閱讀」轉為「雙向傾聽」。
+              </p>
+              <div class="method-specs">
+                <div class="spec-box">
+                  <strong>互動體驗（Interaction）</strong>
+                  <span>自然語言自由提問、長輩記憶觸發、跨回合對話記憶</span>
+                </div>
+                <div class="spec-box">
+                  <strong>跨平台部署（Deployment）</strong>
+                  <span>支援網頁直接開啟（Web）或獨立遊戲發行（itch.io）</span>
+                </div>
+                <div class="spec-box">
+                  <strong>教學與展演整合</strong>
+                  <span>可搭配博物館展場機台、通識課程教案與社區工作坊</span>
+                </div>
+                <div class="spec-box">
+                  <strong>產出規格（Output）</strong>
+                  <span>可長期保存、可持續擴充的數位記憶世界</span>
+                </div>
+              </div>
+            </div>
+            <div class="method-visual">
+              <img src="../../gaiacraft 網頁/img/title-3d-a.jpg" alt="3D 互動世界畫面">
+              <div class="method-visual-cap">可玩世界成果：結合空間探索與可對話 NPC，打造沉浸式記憶展場。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Field Cases Section -->
+    <section id="cases" class="section" aria-labelledby="cases-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Field Cases</span>
+          <h2 id="cases-heading" class="section-title">三個實踐場域：從水底沉村、老街廟埕到大學校園</h2>
+          <p class="section-desc">
+            我們已在三個不同型態的場域驗證這套方法論。切換下方場域標籤，檢視各案的保存焦點與實機畫面：
+          </p>
+        </div>
+
+        <div class="case-controls" role="tablist" aria-label="案例場域切換">
+          <button type="button" class="case-btn" role="tab" id="tab-case-yongan" aria-selected="true" aria-controls="panel-case-yongan" data-case="yongan">
+            01｜石碇永安《沉村之歌》
+          </button>
+          <button type="button" class="case-btn" role="tab" id="tab-case-shenkeng" aria-selected="false" aria-controls="panel-case-shenkeng" data-case="shenkeng">
+            02｜深坑老街與街區記憶
+          </button>
+          <button type="button" class="case-btn" role="tab" id="tab-case-nccu" aria-selected="false" aria-controls="panel-case-nccu" data-case="nccu">
+            03｜國立政治大學《3D 政大》
+          </button>
+        </div>
+
+        <!-- Case 1: Yongan -->
+        <div id="panel-case-yongan" class="case-panel active" role="tabpanel" aria-labelledby="tab-case-yongan">
+          <div>
+            <span class="case-meta-tag">水庫淹沒區記憶重建｜已上架 itch.io</span>
+            <h3 class="case-title">石碇永安：《沉村之歌》</h3>
+            <p class="case-desc">
+              翡翠水庫興建後，石碇永安村沉入水底，原有聚落與茶鄉生活〔待確認：史實敘述〕。團隊透過實地田野訪談與地景考據，在數位世界中重現沉沒前的聚落與水下意象，讓玩家在探索中傾聽長輩的生命故事。
+            </p>
+            <dl class="case-data-list">
+              <div class="case-data-row">
+                <dt>保存對象</dt>
+                <dd>石碇永安水庫淹沒區聚落地景、長輩口述歷史</dd>
+              </div>
+              <div class="case-data-row">
+                <dt>田野規模</dt>
+                <dd><span class="placeholder-tag">〔待填：永安案訪談人數與時數〕</span></dd>
+              </div>
+              <div class="case-data-row">
+                <dt>地方協力</dt>
+                <dd><span class="placeholder-tag">〔待填：永安案合作社區發展協會／文史工作者名單〕</span></dd>
+              </div>
+              <div class="case-data-row">
+                <dt>公開狀態</dt>
+                <dd>已於 itch.io 發布可玩版本</dd>
+              </div>
+            </dl>
+            <a href="https://frankfangcode.itch.io/gaiacraftyongan" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              前往 itch.io 試玩《沉村之歌》 ↗
+            </a>
+          </div>
+
+          <div class="case-gallery">
+            <figure class="span-2">
+              <img src="../../gaiacraft 網頁/img/underwater.jpg" alt="沉村之歌水底場景">
+              <figcaption>《沉村之歌》遊戲畫面：重現沉入翡翠水庫下的聚落空間意象。</figcaption>
+            </figure>
+            <figure>
+              <img src="../../gaiacraft 網頁/img/field-yongan.jpg" alt="永安田野調查現場">
+              <figcaption>石碇永安田野踏查紀錄。</figcaption>
+            </figure>
+            <figure>
+              <img src="../../gaiacraft 網頁/img/yongan-real.jpg" alt="永安實景水域地貌">
+              <figcaption>永安現況水域與地景參照。</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Case 2: Shenkeng -->
+        <div id="panel-case-shenkeng" class="case-panel" role="tabpanel" aria-labelledby="tab-case-shenkeng">
+          <div>
+            <span class="case-meta-tag">傳統街區與信仰生活轉譯｜社區共創</span>
+            <h3 class="case-title">深坑：老街、廟埕與地方常民記憶</h3>
+            <p class="case-desc">
+              以深坑街區與信仰中心為起點，將觀光印象背後的常民生活史、老街建築變遷與地方長輩記憶轉化為可探索的數位街區。透過具在地記憶的 NPC 導覽與對話，帶領學生與遊客認識深坑的歷史縱深。
+            </p>
+            <dl class="case-data-list">
+              <div class="case-data-row">
+                <dt>保存對象</dt>
+                <dd>深坑老街空間紋理、廟埕信仰文化、街區生活口述</dd>
+              </div>
+              <div class="case-data-row">
+                <dt>田野規模</dt>
+                <dd><span class="placeholder-tag">〔待填：深坑案訪談人數與採集點位數〕</span></dd>
+              </div>
+              <div class="case-data-row">
+                <dt>地方協力</dt>
+                <dd><span class="placeholder-tag">〔待填：深坑在地合作單位／學校名單〕</span></dd>
+              </div>
+              <div class="case-data-row">
+                <dt>應用情境</dt>
+                <dd>鄉土教育走讀輔助、街區文化數位策展</dd>
+              </div>
+            </dl>
+            <a href="#collaborate" class="btn btn-secondary">洽詢街區文化保存合作</a>
+          </div>
+
+          <div class="case-gallery">
+            <figure class="span-2">
+              <img src="../../gaiacraft 網頁/img/shenkeng-welcome.jpg" alt="深坑數位場景入口畫面">
+              <figcaption>深坑數位場景：重現街區入口與在地生活氛圍。</figcaption>
+            </figure>
+            <figure>
+              <img src="../../gaiacraft 網頁/img/shenkeng-street.jpg" alt="深坑老街數位重建">
+              <figcaption>老街空間與常民記憶節點。</figcaption>
+            </figure>
+            <figure>
+              <img src="../../gaiacraft 網頁/img/shenkeng-temple.jpg" alt="深坑廟埕場景">
+              <figcaption>信仰中心與廟埕敘事空間。</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Case 3: NCCU -->
+        <div id="panel-case-nccu" class="case-panel" role="tabpanel" aria-labelledby="tab-case-nccu">
+          <div>
+            <span class="case-meta-tag">校園空間記憶與校史轉譯｜Web 線上體驗</span>
+            <h3 class="case-title">國立政治大學：《3D 政大》與像素校園</h3>
+            <p class="case-desc">
+              校園建築會改建、師生世代會更迭，但共同的校園空間記憶可以透過數位雙生留存。團隊以政大校門、廣場與校園地景為載體，驗證 3D 網頁互動與像素風格兩種重現技術，作為校史保存與校園導覽的示範場域。
+            </p>
+            <dl class="case-data-list">
+              <div class="case-data-row">
+                <dt>保存對象</dt>
+                <dd>政大校園代表性地標、跨世代師生校園生活記憶</dd>
+              </div>
+              <div class="case-data-row">
+                <dt>技術形式</dt>
+                <dd>Web 3D 即時渲染場景、2D 像素校園地景</dd>
+              </div>
+              <div class="case-data-row">
+                <dt>參與規模</dt>
+                <dd><span class="placeholder-tag">〔待填：政大案參與師生與體驗人次〕</span></dd>
+              </div>
+              <div class="case-data-row">
+                <dt>公開狀態</dt>
+                <dd>〔待確認：3D 政大目前開放狀態〕・正式版預計 2027 百年校慶開放</dd>
+              </div>
+            </dl>
+            <a href="https://wenzhotw.github.io/nccu100/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              開啟《3D 政大》線上體驗 ↗
+            </a>
+          </div>
+
+          <div class="case-gallery">
+            <figure>
+              <img src="../../gaiacraft 網頁/img/gate-3d.jpg" alt="政大校門 3D 場景">
+              <figcaption>《3D 政大》校門地標重建。</figcaption>
+            </figure>
+            <figure>
+              <img src="../../gaiacraft 網頁/img/plaza-3d.jpg" alt="政大廣場 3D 場景">
+              <figcaption>校園廣場 3D 互動空間。</figcaption>
+            </figure>
+            <figure class="span-2">
+              <img src="../../gaiacraft 網頁/img/campus-pixel.jpg" alt="像素風格政大校園畫面">
+              <figcaption>像素風格校園呈現：依專案需求彈性配置 3D 或像素視覺規格。</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collaboration Pathways Section -->
+    <section id="collaborate" class="section" aria-labelledby="collab-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Collaboration Pathways</span>
+          <h2 id="collab-heading" class="section-title">三條合作通道：把這套方法帶到你的場域</h2>
+          <p class="section-desc">
+            請選擇您的單位屬性，檢視對應的合作模式、交付成果與專案啟動流程：
+          </p>
+        </div>
+
+        <div class="pathway-selector" role="tablist" aria-label="合作對象身份切換">
+          <button type="button" class="pathway-btn" role="tab" id="tab-path-usr" aria-selected="true" aria-controls="panel-path-usr" data-path="usr">
+            <span class="pathway-role">PATHWAY A｜ACADEMIA</span>
+            <div class="pathway-name">大學 USR 與研究團隊</div>
+          </button>
+
+          <button type="button" class="pathway-btn" role="tab" id="tab-path-gov" aria-selected="false" aria-controls="panel-path-gov" data-path="gov">
+            <span class="pathway-role">PATHWAY B｜PUBLIC &amp; COMMUNITY</span>
+            <div class="pathway-name">地方政府與社區組織</div>
+          </button>
+
+          <button type="button" class="pathway-btn" role="tab" id="tab-path-esg" aria-selected="false" aria-controls="panel-path-esg" data-path="esg">
+            <span class="pathway-role">PATHWAY C｜CORPORATE &amp; EDU</span>
+            <div class="pathway-name">企業 ESG 與教育推廣</div>
+          </button>
+        </div>
+
+        <!-- Pathway A: USR -->
+        <div id="panel-path-usr" class="pathway-panel active" role="tabpanel" aria-labelledby="tab-path-usr">
+          <div>
+            <span class="eyebrow">適用對象：各大學 USR 計畫、數位人文中心、系所課程</span>
+            <h3>讓學生田野調查的成果，不再隨學期結束而封存</h3>
+            <p class="section-desc">
+              協助大學 USR 團隊將累積多年的社區訪談逐字稿與地方研究，轉化為可展演、可互動的線上世界，強化 USR 計畫的社會影響力與數位永續留存。
+            </p>
+            <ul class="pathway-list">
+              <li><strong>AI 記憶轉譯工作坊：</strong>指導師生將口述史語料結構化，建立專屬社區 NPC。</li>
+              <li><strong>USR 成果特展數位化：</strong>共同開發具備影響力數據與互動體驗的線上／實體展演版本。</li>
+              <li><strong>跨校方法論移轉：</strong>提供田野採集規範、語料整理模板與遊戲化敘事技術協力。</li>
+              <li><strong>合作期程與預算：</strong><span class="placeholder-tag">〔待填：大學 USR 合作期程與經費級距〕</span></li>
+            </ul>
+          </div>
+          <div class="pathway-cta-box">
+            <h4>預約 USR 跨校共創諮詢</h4>
+            <p>點擊下方按鈕將自動帶入信件主旨，歡迎附上貴校 USR 場域簡述或合作構想。</p>
+            <a href="mailto:113306052@g.nccu.edu.tw?subject=%5BGaiaCraft%20%E5%90%88%E4%BD%9C%E6%B4%BD%E8%A9%A2%5D%20%E5%A4%A7%E5%AD%B8%20USR%20%E8%88%87%E5%AD%B8%E8%A1%93%E5%90%88%E4%BD%9C%E6%8F%90%E6%A1%88" class="btn btn-primary" style="width: 100%;">
+              寄信洽談大學 USR 合作 ✉
+            </a>
+          </div>
+        </div>
+
+        <!-- Pathway B: Local Gov & Community -->
+        <div id="panel-path-gov" class="pathway-panel" role="tabpanel" aria-labelledby="tab-path-gov">
+          <div>
+            <span class="eyebrow">適用對象：文化局處、地方故事館、社區發展協會、文史工作室</span>
+            <h3>為即將消失的聚落與高齡長輩，留下會說話的數位文化資產</h3>
+            <p class="section-desc">
+              針對面臨都市更新、遷村或人口流失的社區，我們提供從口述採集到互動世界建置的完整專案服務，成果可同步用於地方文化館常設展與鄉土教材。
+            </p>
+            <ul class="pathway-list">
+              <li><strong>社區耆老口述記憶保存專案：</strong>實地訪談錄音、語料校對與 AI 記憶角色建置。</li>
+              <li><strong>歷史地景 3D／像素復原：</strong>依老照片與長輩描述重建已消失或變遷的街區地景。</li>
+              <li><strong>地方文化館互動展件：</strong>交付可於展場平板、電腦或網頁穩定運行的導覽體驗系統。</li>
+              <li><strong>合作期程與預算：</strong><span class="placeholder-tag">〔待填：地方政府與社區委託標準期程與規格〕</span></li>
+            </ul>
+          </div>
+          <div class="pathway-cta-box">
+            <h4>啟動地方記憶保存委託</h4>
+            <p>點擊下方按鈕將自動帶入信件主旨，我們將協助評估場域文史資料與轉譯可行性。</p>
+            <a href="mailto:113306052@g.nccu.edu.tw?subject=%5BGaiaCraft%20%E5%90%88%E4%BD%9C%E6%B4%BD%E8%A9%A2%5D%20%E5%9C%B0%E6%96%B9%E6%94%BF%E5%BA%9C%E8%88%87%E7%A4%BE%E5%8D%80%E8%A8%98%E6%86%B6%E4%BF%9D%E5%AD%98%E5%B0%88%E6%A1%88" class="btn btn-primary" style="width: 100%;">
+              寄信洽談地方與社區合作 ✉
+            </a>
+          </div>
+        </div>
+
+        <!-- Pathway C: Corporate ESG & Education -->
+        <div id="panel-path-esg" class="pathway-panel" role="tabpanel" aria-labelledby="tab-path-esg">
+          <div>
+            <span class="eyebrow">適用對象：企業永續部門（ESG／CSR）、文教基金會、高中職與國中小教師</span>
+            <h3>兼具文化永續影響力與教育體驗的 ESG 共好行動</h3>
+            <p class="section-desc">
+              企業可支持特定高風險記憶場域的保存計畫，或將企業發源地與廠區周邊社區文史轉化為互動教材，落實聯合國 SDGs 永續城市與文化保存指標。
+            </p>
+            <ul class="pathway-list">
+              <li><strong>企業 ESG 文化永續冠名支持：</strong>認養鄉鎮社區記憶保存計畫，產出透明可追蹤的影響力報告。</li>
+              <li><strong>Educators 教育專區與教案包：</strong>提供結合《沉村之歌》等作品之社會科／本土語／資訊素養課程模組。</li>
+              <li><strong>企業志工與親子走讀體驗：</strong>結合線上世界探索與實體社區踏查的深度永續活動。</li>
+              <li><strong>合作期程與預算：</strong><span class="placeholder-tag">〔待填：企業 ESG 專案贊助與教育授權方案〕</span></li>
+            </ul>
+          </div>
+          <div class="pathway-cta-box">
+            <h4>索取企業 ESG 與教育合作簡報</h4>
+            <p>點擊下方按鈕將自動帶入信件主旨，歡迎洽詢年度永續專案共創或學校教案導入。</p>
+            <a href="mailto:113306052@g.nccu.edu.tw?subject=%5BGaiaCraft%20%E5%90%88%E4%BD%9C%E6%B4%BD%E8%A9%A2%5D%20%E4%BC%81%E6%A5%AD%20ESG%20%E8%88%87%E6%95%99%E8%82%B2%E6%8E%A8%E5%BB%A3%E5%90%88%E4%BD%9C" class="btn btn-primary" style="width: 100%;">
+              寄信洽談企業 ESG 與教育合作 ✉
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Press Kit Section -->
+    <section id="presskit" class="section" aria-labelledby="press-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Press Kit &amp; Media Assets</span>
+          <h2 id="press-heading" class="section-title">媒體與評審資料包（Press Kit）</h2>
+          <p class="section-desc">
+            提供評審委員、合作決策者與媒體記者快速引用的事實表、團隊簡介與視覺素材。
+          </p>
+        </div>
+
+        <div class="press-grid">
+          <!-- Fact Sheet -->
+          <div class="fact-sheet">
+            <h3>基本事實表（Fact Sheet）</h3>
+            <table class="fact-table">
+              <tbody>
+                <tr>
+                  <th>團隊名稱</th>
+                  <td>GaiaCraft 記憶保存工作室（政大衍生跨領域學生團隊）</td>
+                </tr>
+                <tr>
+                  <th>核心定位</th>
+                  <td>結合口述歷史、AI 語音與大型語言模型轉譯的互動記憶保存實驗室</td>
+                </tr>
+                <tr>
+                  <th>已實踐場域</th>
+                  <td>3 處（石碇永安、深坑、國立政治大學）</td>
+                </tr>
+                <tr>
+                  <th>公開體驗連結</th>
+                  <td>
+                    <div>1. <a href="https://frankfangcode.itch.io/gaiacraftyongan" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); text-decoration: underline;">《沉村之歌》itch.io 頁面 ↗</a></div>
+                    <div>2. <a href="https://wenzhotw.github.io/nccu100/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); text-decoration: underline;">《3D 政大》Web 體驗 ↗</a></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>競賽獲獎紀錄</th>
+                  <td>
+                    • 政大 AI 跨域×永續創新競賽 佳作<br>
+                    • 第六屆中鼎永續生活實驗室獎 全國前 20・佳作<br>
+                    • 114 學年度全國人文社會永續行動創新應用競賽 佳作
+                  </td>
+                </tr>
+                <tr>
+                  <th>經費支持</th>
+                  <td>政大商學院永續行動提案競賽（經費支持）</td>
+                </tr>
+                <tr>
+                  <th>媒體聯絡信箱</th>
+                  <td><a href="mailto:113306052@g.nccu.edu.tw" style="color: var(--accent-amber); font-weight: 700;">113306052@g.nccu.edu.tw</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Right Column: Team Bio, Logo, Screenshots -->
+          <div class="press-assets">
+            <div class="asset-card">
+              <h3>團隊簡介（標準引用段落）</h3>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                GaiaCraft 記憶保存工作室發起於國立政治大學，致力於解決地方文史與高齡口述記憶隨時間流失的課題。團隊建構「田野與口述 → AI 記憶轉譯（語音辨識＋大型語言模型）→ 會記得你的 NPC」三階段方法論，目前已於政大校園、深坑老街與石碇永安水庫淹沒區完成三個場域實踐，並將《沉村之歌》上架 itch.io 供大眾體驗。團隊持續與大學 USR、地方社區及企業 ESG 夥伴合作，把即將消失的地方變成可以玩的世界。
+              </p>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                核心成員與指導顧問：<span class="placeholder-tag">〔待填：核心成員姓名、系級與指導老師名單〕</span>
+              </p>
+            </div>
+
+            <div class="asset-card">
+              <h3>標準識別（Logo 示意）與劇照截圖</h3>
+              <div class="logo-preview-row">
+                <div class="logo-specimen light">
+                  GaiaCraft<br><span style="font-size: 0.72rem; font-family: var(--font-sans); font-weight: 500;">記憶保存工作室（淺色底示意）</span>
+                </div>
+                <div class="logo-specimen dark">
+                  GaiaCraft<br><span style="font-size: 0.72rem; font-family: var(--font-sans); font-weight: 500; color: #B7C4BC;">記憶保存工作室（深色底示意）</span>
+                </div>
+              </div>
+
+              <div class="press-thumbs" aria-label="Press Kit 精選截圖預覽">
+                <img src="../../gaiacraft 網頁/img/underwater.jpg" alt="沉村之歌截圖">
+                <img src="../../gaiacraft 網頁/img/village.jpg" alt="村落場景截圖">
+                <img src="../../gaiacraft 網頁/img/shenkeng-street.jpg" alt="深坑老街截圖">
+                <img src="../../gaiacraft 網頁/img/plaza-3d.jpg" alt="3D 政大截圖">
+              </div>
+
+              <div class="press-download-bar">
+                <button type="button" class="btn btn-secondary press-dl-btn" data-asset="完整媒體資料包（ZIP 示意）">
+                  ⬇ 下載完整 Press Kit（示意按鈕）
+                </button>
+                <button type="button" class="btn btn-secondary press-dl-btn" data-asset="Logo 與高解析劇照組（示意）">
+                  ⬇ 下載 Logo 與劇照（示意按鈕）
+                </button>
+              </div>
+              <div id="press-toast" class="toast-msg" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>GaiaCraft 記憶保存工作室</strong>｜把即將消失的地方，變成可以玩的世界。<br>
+        聯絡信箱：<a href="mailto:113306052@g.nccu.edu.tw">113306052@g.nccu.edu.tw</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://frankfangcode.itch.io/gaiacraftyongan" target="_blank" rel="noopener noreferrer">《沉村之歌》itch.io ↗</a>
+        <a href="https://wenzhotw.github.io/nccu100/" target="_blank" rel="noopener noreferrer">《3D 政大》Web ↗</a>
+        <a href="#top">回到頂部 ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Helper for accessible tab switching
+      function setupTabs(tabSelector, panelSelector, dataAttr) {
+        var tabs = document.querySelectorAll(tabSelector);
+        var panels = document.querySelectorAll(panelSelector);
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            var targetKey = tab.getAttribute(dataAttr);
+
+            tabs.forEach(function (t) {
+              t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+            });
+
+            panels.forEach(function (panel) {
+              if (panel.id.indexOf(targetKey) !== -1) {
+                panel.classList.add('active');
+              } else {
+                panel.classList.remove('active');
+              }
+            });
+          });
+        });
+      }
+
+      // Initialize 3-Step Methodology Tabs
+      setupTabs('.method-tab', '.method-panel', 'data-step');
+
+      // Initialize 3 Field Cases Tabs
+      setupTabs('.case-btn', '.case-panel', 'data-case');
+
+      // Initialize 3 Collaboration Pathway Tabs
+      setupTabs('.pathway-btn', '.pathway-panel', 'data-path');
+
+      // Press Kit Demo Download Buttons Feedback
+      var dlButtons = document.querySelectorAll('.press-dl-btn');
+      var toast = document.getElementById('press-toast');
+
+      dlButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var assetName = btn.getAttribute('data-asset');
+          if (toast) {
+            toast.textContent = '【示意功能】您點選了「' + assetName + '」。正式上線後將提供雲端壓縮檔直接下載；現階段如需媒體素材請來信 113306052@g.nccu.edu.tw。';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

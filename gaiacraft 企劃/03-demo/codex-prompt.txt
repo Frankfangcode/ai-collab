@@ -1,0 +1,22 @@
+# Demo 共同規格
+- 單一 HTML 檔，CSS/JS 全部內嵌，不用外部框架（Google Fonts 的 Noto Sans TC / Noto Serif TC 可用）
+- 圖片一律用相對路徑引用既有素材：`../../gaiacraft 網頁/img/<檔名>`（可用：underwater.jpg village.jpg yongan-real.jpg field-yongan.jpg plaza-3d.jpg gate-3d.jpg campus-pixel.jpg title-3d-a.jpg shenkeng-welcome.jpg shenkeng-street.jpg shenkeng-temple.jpg）
+- 外部連結：3D 政大 https://wenzhotw.github.io/nccu100/ ；沉村之歌 https://frankfangcode.itch.io/gaiacraftyongan
+- 手機（375px）與桌機都要能看；支援 prefers-reduced-motion
+- **不可編造數字或引言**：沒有核實的數字、長輩語錄、合作單位，一律寫成「〔待填：xxx〕」或明標「示意」
+- 頁面最上方放一條小橫幅：「DEMO・方向X：名稱｜示意稿，非正式網站」
+- 繁體中文
+
+---
+## 方向 A：《沉村》敘事旗艦站——「讓網站本身就是一段潛水」
+- **一句話**：你喝的每一口水底下，都有一座村莊。（史實與用語待團隊確認）
+- **主角**：《沉村之歌》與永安的人
+- **長相**：首頁就是一段捲動式敘事，往下捲＝往水底潛。依序看到：水庫水面 → 1987 年 → 實景／遊戲拖曳對照 → 長輩語錄 + AI 村民試聊預覽 → 「潛入完整遊戲」按鈕。其他作品收進次頁「更多世界」。
+- **主要受眾**：大眾、玩家、媒體、文化類評審
+- **對標**：Never Alone（Cultural Insights）、Spiritfarer（一句話高概念）、中研院開放博物館（對照滑桿）
+
+## 方向 B：政大百年數位門面——「每個校友心中都有一座四維堂」
+
+---
+你負責方向 A demo。依你剛才的構想：手機也能流暢閱讀的捲動頁（往下捲＝往水底潛，背景色由水面藍漸深）、實景（yongan-real.jpg）／遊戲（village.jpg）拖曳對照滑桿、「聽見沉村之聲」區塊：左邊是〔待填：長輩語錄〕卡片，右邊是明標「示意」的 AI 村民固定對話（2–3 個預設問題按鈕，點了顯示預寫回答，回答內容只能用網站已公開的事實：茶產業、魔神仔、廟宇信仰、地名演變、1987 翡翠水庫完工），結尾 CTA「潛入完整遊戲」連到 itch.io，次要連結「更多世界」列出深坑老街、3D 政大。
+只建立一個檔案：./demo-A-沉村敘事.html（目前工作目錄）。不要修改其他任何檔案。完成後回覆一句話說明。
