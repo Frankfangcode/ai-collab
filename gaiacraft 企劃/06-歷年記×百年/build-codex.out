@@ -1,0 +1,11 @@
+已依定案敘事修改 [gaiacraft-歷年記x百年.html](</Users/frank/Library/Mobile Documents/com~apple~CloudDocs/AI 協作/gaiacraft 企劃/06-歷年記×百年/gaiacraft-歷年記x百年.html>)，只動了這個檔案。
+
+- 保留 demo-B 的視覺與原有段落，加入導覽、事實條、三篇歷年記、獲獎與報導、團隊與聯絡；移除原本的三格摘要。
+- 歷年記用原生 `<details>` 展開，像書頁折口；永安章預設打開。四維堂與永安對照在手機改用「看前／看後」。影片點封面後才載入，減少初次開頁的載入量。
+- 投稿明標示意、停用送出鈕；3 項競賽獲獎與 1 項經費支持分列。未核實的素材與角色保留〔待填〕。
+
+**已驗證：**HTML 標籤與段落順序、五章設定、原站影片 ID、圖片路徑及 JavaScript 語法；也檢查了示意表單沒有提交路徑。**尚未驗證：**桌機與 375px 手機的實際畫面及點按流程。瀏覽器工具封鎖本機檔案，Playwright 也無法在此環境啟動，因此不能宣稱視覺驗收通過，也未推送或部署。
+
+主方案是沿用原生展開元件，鍵盤可操作且不需外部套件；備援是自製展開互動，但會增加維護與無障礙成本。這份示意稿以原生元件較合適。仍需在可開啟本機頁面的環境檢查手機是否溢出，以及既定金色、珊瑚色文字的對比提醒。
+
+已套用 `product-owner-teaching`、`test-driven-development`、`impeccable`、`emil-design-eng`、`playwright-cli`、`verification-before-completion`。
