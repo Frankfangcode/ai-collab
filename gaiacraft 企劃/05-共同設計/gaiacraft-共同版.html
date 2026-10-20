@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="蓋亞造界共同版示意稿：從政大游泳隊出發，走進深坑與石碇永安，再回到政大百年。">
+  <title>蓋亞造界｜從永安，游回政大</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @font-face{font-family:Cubic11;src:url('https://cdn.jsdelivr.net/gh/ACh-K/Cubic-11@main/fonts/web/Cubic_11.woff2') format('woff2');font-display:swap}
+    :root{--paper:#f6f1df;--ink:#17262d;--water:#2b4143;--silt:#46625f;--foam:#69928d;--leaf:#306822;--campus:#2a541f;--fresh:#87b174;--brick:#9f6e56;--brickdark:#5b443f;--tea:#bf9b61;--font-body:'Noto Sans TC',sans-serif;--font-pixel:Cubic11,'Noto Sans TC',sans-serif;--page:1120px;--side:clamp(20px,5vw,68px)}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:68px}
+    body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.8 var(--font-body)}
+    body::selection,::selection{background:var(--tea);color:var(--ink)}
+    a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.24em}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    :focus-visible{outline:3px solid var(--brick);outline-offset:4px}
+    img{display:block;max-width:100%}
+    .skip{position:absolute;z-index:100;top:-90px;left:16px;padding:10px 16px;background:var(--paper);color:var(--ink)}
+    .skip:focus{top:16px}
+    .notice{min-height:33px;padding:4px var(--side);background:var(--campus);color:var(--paper);font-size:12px;letter-spacing:.03em;text-align:center}
+    .journey{position:fixed;z-index:50;left:3px;top:50%;transform:translateY(-50%);display:grid;gap:3px;padding:12px 4px;background:var(--paper);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+    .journey a{display:flex;align-items:center;gap:7px;min-width:58px;padding:5px 4px;color:var(--silt);font:12px/1.4 var(--font-pixel);text-decoration:none}
+    .journey a::before{content:'';width:5px;height:5px;background:currentColor;flex:none}
+    .journey a[aria-current="step"]{color:var(--campus);background:#87b17438}
+    .journey a[aria-current="step"]::before{width:8px;height:8px}
+    .wrap{width:min(var(--page),calc(100% - var(--side)*2));margin-inline:auto}
+    .section{position:relative;padding:clamp(76px,11vw,150px) 0}
+    .section-head{max-width:720px;margin-bottom:42px}
+    h1,h2,h3,p,figure{margin-top:0}
+    h1,h2,h3{line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+    h1{font-size:clamp(42px,5.9vw,78px);font-weight:900;line-height:1.16;margin-bottom:24px}
+    h2{font-family:var(--font-pixel);font-size:clamp(32px,4.1vw,58px);font-weight:400;letter-spacing:.02em;margin-bottom:20px}
+    h3{font-size:clamp(20px,2vw,27px);font-weight:800}
+    p{max-width:68ch}
+    .lead{font-size:clamp(17px,1.75vw,21px);line-height:1.85}
+    .small{font-size:13px;line-height:1.75}
+    .muted{opacity:.75}
+    .pixel{font-family:var(--font-pixel);font-weight:400;letter-spacing:.03em}
+    .actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
+    .choice{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:49px;padding:10px 18px;border:2px solid currentColor;background:var(--paper);color:var(--ink);box-shadow:4px 0 0 -1px currentColor,-4px 0 0 -1px currentColor,0 4px 0 -1px currentColor,0 -4px 0 -1px currentColor;text-align:center;text-decoration:none;font:15px/1.4 var(--font-pixel);transition:background-color .18s ease,color .18s ease,transform .18s ease}
+    .choice:hover,.choice:focus-visible{background:var(--campus);color:var(--paper)}
+    .choice:active{transform:translateY(2px)}
+    .choice.dark{background:var(--campus);color:var(--paper)}
+    .choice.dark:hover,.choice.dark:focus-visible{background:var(--ink)}
+    .choice.light{background:var(--paper);color:var(--ink)}
+    .choice[aria-disabled="true"]{opacity:.6;cursor:not-allowed}
+    .line-label{font:700 13px/1.5 var(--font-body);margin-bottom:10px}
+    .work-note .line-label,.mini-work .line-label{font-family:var(--font-pixel);font-weight:400}
+    .hero{padding:42px 0 80px;background:var(--paper)}
+    .hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(24px,5vw,65px);align-items:start}
+    .hero-copy{padding-top:32px}
+    .hero-copy .lead{max-width:28ch}
+    .hero-pair{position:relative;display:grid;gap:13px;padding-top:28px}
+    .hero-pair figure{margin:0}
+    .hero-pair figure:first-child{width:min(78%,558px)}
+    .hero-pair figure:last-child{width:92%;justify-self:end}
+    .hero-pair img{width:100%;height:auto}
+    figcaption{padding-top:10px;font-size:12px;line-height:1.45}
+    .hero-pair::after{content:'同一個村口';position:absolute;top:0;right:0;font:700 13px/1.5 var(--font-body);color:var(--campus)}
+    .shore{background:var(--paper);border-top:1px solid var(--silt)}
+    .shore-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(25px,5vw,72px);align-items:start}
+    .shore-story{position:sticky;top:90px}
+    .shore-gallery{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+    .shore-gallery .wide{grid-column:1/-1}
+    .shore-gallery figure{margin:0}
+    .shore-gallery img{width:100%;aspect-ratio:1.25;object-fit:cover}
+    .shore-gallery .wide img{aspect-ratio:1.55}
+    .work-note{border-top:1px solid var(--brickdark);padding-top:20px;margin-top:27px}
+    .video-shell{position:relative;margin-top:24px;background:var(--ink);aspect-ratio:16/9;overflow:hidden}
+    .video-shell button{position:absolute;inset:0;width:100%;border:0;background:#17262d99;color:white;display:grid;place-items:center;text-align:center;font:16px var(--font-pixel)}
+    .video-shell button img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.72}
+    .video-shell button span{position:relative;z-index:1;padding:12px 17px;background:var(--ink)}
+    .video-shell iframe{width:100%;height:100%;border:0}
+    .waterline{height:65px;background:linear-gradient(to bottom,var(--paper) 0 49%,var(--ink) 50%);position:relative;overflow:hidden}
+    .waterline::after{content:'';position:absolute;top:48%;left:-5%;width:110%;height:7px;background:var(--foam);transform:translateX(-100%)}
+    .waterline.in-view::after{animation:cross-water 1s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes cross-water{to{transform:translateX(0)}}
+    .submerge{padding:80px 0 92px;background:var(--ink);color:var(--paper)}
+    .submerge p{font-size:clamp(19px,2.5vw,28px);font-weight:600}
+    .underwater{background:var(--ink);color:var(--paper);padding-top:0}
+    .underwater-banner{position:relative;height:clamp(270px,47vw,610px);overflow:hidden}
+    .underwater-banner img{width:100%;height:100%;object-fit:cover}
+    .underwater-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,#17262dcc)}
+    .underwater-banner .wrap{position:absolute;z-index:1;bottom:18px;left:50%;transform:translateX(-50%)}
+    .underwater .body{padding-top:80px}
+    .underwater .section-head{max-width:780px}
+    .underwater a:not(.choice){color:#b5d9c7}
+    .compare{--split:50%;position:relative;width:100%;aspect-ratio:16/8.2;overflow:hidden;background:var(--water)}
+    .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .compare img.real{clip-path:inset(0 calc(100% - var(--split)) 0 0)}
+    .compare::after{content:'';position:absolute;z-index:2;top:0;bottom:0;left:var(--split);width:3px;background:var(--paper);pointer-events:none;transform:translateX(-1px)}
+    .compare .compare-tag{position:absolute;z-index:3;bottom:13px;padding:4px 8px;background:var(--ink);color:var(--paper);font:700 12px var(--font-body)}
+    .compare .compare-tag:first-of-type{left:14px}
+    .compare .compare-tag:last-of-type{right:14px}
+    .compare-controls{display:flex;gap:18px;align-items:center;margin:12px 0 35px}
+    .compare-controls label{white-space:nowrap;font:700 13px var(--font-body)}
+    .compare-controls input[type=range]{width:100%;accent-color:var(--tea)}
+    .mobile-switch{display:none}
+    .story-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,4vw,60px);align-items:start;margin-top:62px}
+    .dialogue{padding:22px 24px;background:var(--water);color:var(--paper);border:2px solid var(--foam);box-shadow:4px 0 0 -1px var(--foam),-4px 0 0 -1px var(--foam),0 4px 0 -1px var(--foam),0 -4px 0 -1px var(--foam);font:16px/1.9 var(--font-pixel);text-align:left;width:100%;min-height:164px}
+    .dialogue .who{display:block;color:#bdd8c0;font-size:13px;margin-bottom:10px}
+    .dialogue .arrow{display:block;text-align:right;color:var(--tea);animation:blink .8s steps(2,end) infinite}
+    @keyframes blink{50%{opacity:0}}
+    .quote-placeholder{padding:25px 0;border-block:1px solid var(--foam);margin-top:25px}
+    .quote-placeholder strong{font-weight:600}
+    .mini-work{margin-top:34px;padding-top:24px;border-top:1px solid var(--foam)}
+    .mini-work .line-label{color:#b4d3b1}
+    .return{background:var(--paper)}
+    .return-intro{display:grid;grid-template-columns:1fr .72fr;gap:clamp(25px,5vw,72px);align-items:end}
+    .return-intro figure{margin:0}
+    .return-intro img{width:100%;aspect-ratio:1.45;object-fit:cover}
+    .return .compare{margin-top:44px;aspect-ratio:16/8}
+    .return .compare img{object-position:center}
+    .return .compare .compare-tag{background:var(--paper);color:var(--ink)}
+    .next-steps{display:grid;grid-template-columns:1fr 1fr;gap:38px;margin-top:57px;padding-top:30px;border-top:1px solid var(--silt)}
+    .next-steps h3{margin-bottom:8px}
+    .memory{background:var(--paper);border-top:1px solid var(--silt)}
+    .memory-intro{display:flex;justify-content:space-between;align-items:end;gap:25px}
+    .memory-intro p{max-width:35ch}
+    .collection{display:grid;grid-template-columns:1.12fr .88fr;gap:12px;margin-top:36px}
+    .collect-item{min-height:108px;padding:19px 20px;background:var(--paper);border:2px solid var(--silt)}
+    .collect-item .state{display:block;font:12px var(--font-pixel);color:var(--campus);margin-bottom:7px}
+    .collect-item strong{font-family:var(--font-pixel);font-size:17px;font-weight:400;line-height:1.45}
+    .collect-item .small{margin:7px 0 0}
+    .collect-item.locked{border:2px dashed var(--silt);background:transparent}
+    .collect-item.locked strong{font:16px/1.6 var(--font-pixel)}
+    .collect-item.locked .state{color:var(--ink)}
+    .collect-item.locked a{display:inline-block;margin-top:7px}
+    .party{background:var(--paper)}
+    .party-intro{display:grid;grid-template-columns:1fr .7fr;gap:40px}
+    .pool-lanes{margin-top:55px;border-top:2px solid var(--campus)}
+    .lane{display:grid;grid-template-columns:110px 1fr 1.25fr;align-items:center;gap:20px;padding:19px 0;border-bottom:1px solid var(--silt)}
+    .lane span:first-child{font:700 14px var(--font-body);color:var(--campus)}
+    .lane strong{font-size:25px;line-height:1.3}
+    .lane p{margin:0}
+    .relay{background:var(--paper);color:var(--ink);border-top:2px solid var(--campus)}
+    .relay .section-head{max-width:820px}
+    .relay .choice{background:var(--campus);color:var(--paper)}
+    .relay .choice:hover,.relay .choice:focus-visible{background:var(--ink)}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:38px 0 0}
+    .tabs button{padding:12px 14px;border:2px solid var(--campus);background:transparent;color:var(--campus);font:14px/1.45 var(--font-pixel)}
+    .tabs button:hover{background:var(--fresh);color:var(--ink)}
+    .tabs button[aria-selected=true]{background:var(--campus);color:var(--paper)}
+    .tab-panel{padding:30px 0 35px;border-top:1px solid var(--silt);min-height:228px}
+    .tab-panel[hidden]{display:none}
+    .tab-panel h3{margin-bottom:9px}
+    .tab-panel .choice{margin-top:14px}
+    .press{margin-top:70px;padding-top:40px;border-top:1px solid var(--silt)}
+    .press h3{font-size:clamp(25px,3vw,36px)}
+    .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px;border-top:1px solid var(--silt)}
+    .fact{display:grid;grid-template-columns:100px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--silt);font-size:14px}
+    .fact dt{color:var(--campus)}
+    .fact dd{margin:0}
+    .relay a:not(.choice){color:var(--campus)}
+    footer{background:var(--ink);color:var(--paper);padding:48px 0 70px}
+    footer h2{font-size:22px}
+    footer p{font-size:14px;max-width:77ch}
+    @media(max-width:900px){.journey{left:4px}.shore-layout{grid-template-columns:1fr}.shore-story{position:static}.shore-gallery{max-width:720px}.return-intro{grid-template-columns:1fr 1fr}}
+    @media(min-width:720px) and (max-width:1279px){.journey{top:0;left:0;right:0;transform:none;display:flex;justify-content:center;gap:clamp(8px,2vw,30px);padding:3px 8px;border:0;border-bottom:2px solid var(--ink);box-shadow:none}.notice{margin-top:37px}}
+    @media(max-width:719px){html{scroll-padding-top:63px}.notice{font-size:12px;line-height:1.45}.journey{top:0;right:0;left:0;transform:none;display:flex;justify-content:space-around;gap:0;padding:3px 4px;border:0;border-bottom:1px solid var(--silt);box-shadow:none;min-height:31px}.journey a{min-width:0;gap:2px;padding:4px 2px;font-size:12px;white-space:nowrap}.journey a::before{width:3px;height:3px}.journey a[aria-current=step]::before{width:5px;height:5px}.notice{margin-top:34px}.section{padding:70px 0}.section-head{margin-bottom:27px}.hero{padding:25px 0 65px}.hero-grid{grid-template-columns:1fr;gap:0}.hero-copy{display:contents}.hero-copy .line-label{order:1}.hero-copy h1{order:2;font-size:clamp(36px,10vw,46px);margin-bottom:12px}.hero-pair{order:3;grid-template-columns:1fr 1fr;gap:8px;padding-top:23px;margin-bottom:15px}.hero-pair figure:first-child,.hero-pair figure:last-child{width:100%}.hero-pair img{aspect-ratio:4/3;object-fit:cover}.hero-pair figure:last-child img{object-position:50% 72%}.hero-pair::after{top:0}.hero-copy .lead{order:4;max-width:none;margin-bottom:0}.hero-copy .actions{order:5;margin-top:22px}.actions{gap:12px}.choice{width:100%}.shore-gallery{gap:8px}.waterline{height:45px}.submerge{padding:70px 0}.underwater-banner{height:330px}.underwater .body{padding-top:55px}.compare{aspect-ratio:4/3}.compare img.real{clip-path:none}.compare::after,.compare-tag{display:none!important}.compare[data-mobile-view=game] img.real{display:none}.compare[data-mobile-view=real] img.game{display:none}.mobile-switch{display:flex;gap:8px;margin:12px 0 31px}.mobile-switch button{flex:1;min-height:43px;border:1px solid currentColor;background:transparent;color:inherit;font:13px var(--font-pixel)}.mobile-switch button[aria-pressed=true]{background:var(--paper);color:var(--ink)}.return .mobile-switch button[aria-pressed=true]{background:var(--campus);color:var(--paper)}.compare-controls{display:none}.story-grid,.return-intro,.party-intro{grid-template-columns:1fr}.story-grid{margin-top:42px}.return .compare{margin-top:25px;aspect-ratio:4/3}.next-steps{grid-template-columns:1fr;gap:20px;margin-top:40px}.memory-intro{display:block}.collection{grid-template-columns:1fr}.pool-lanes{margin-top:32px}.lane{grid-template-columns:64px 1fr;gap:5px 12px}.lane span:first-child{grid-row:span 2;font-size:12px}.lane strong{font-size:20px}.lane p{grid-column:2;font-size:14px}.tabs{display:grid;grid-template-columns:1fr;margin-top:26px}.tabs button{text-align:left}.tab-panel{min-height:0}.facts{grid-template-columns:1fr}.fact{grid-template-columns:79px 1fr;gap:10px;overflow-wrap:anywhere}.press{margin-top:52px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.waterline::after{transform:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+  <nav class="journey" aria-label="旅程標記">
+    <a href="#start" aria-current="step">出發</a><a href="#shore">岸上</a><a href="#water">入水</a><a href="#yongan">永安</a><a href="#campus">返校</a><a href="#relay">接力</a>
+  </nav>
+  <div class="notice">三家共同版・Claude × Codex × Gemini｜示意稿，非正式網站</div>
+  <main id="main">
+    <section class="hero" id="start" data-stage="出發" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="line-label">出發｜蓋亞造界</p>
+          <h1 id="hero-title">一支游泳隊，潛進了被水淹沒的村莊。</h1>
+          <p class="lead">從政大校園走到深坑老街、石碇永安，再把沿路聽見的故事帶回政大百年。這是我們一路做出的遊戲。</p>
+          <div class="actions"><a class="choice dark" href="#shore">▶ PRESS START 開始下潛</a><a class="choice" href="#relay">✉ 組隊合作</a></div>
+        </div>
+        <div class="hero-pair" aria-label="永安村口實景與遊戲場景並列">
+          <figure><img src="../../gaiacraft 網頁/img/yongan-real.jpg" alt="石碇永安村口寫著失落村莊美景的實景牆" width="558" height="419"><figcaption>實景｜石碇永安</figcaption></figure>
+          <figure><img src="../../gaiacraft 網頁/img/village.jpg" alt="遊戲中重現永安村口的像素場景" width="2576" height="1437"><figcaption>遊戲｜像素版永安</figcaption></figure>
+        </div>
+      </div>
+    </section>
+    <section class="section shore" id="shore" data-stage="岸上" aria-labelledby="shore-title">
+      <div class="wrap shore-layout">
+        <div class="shore-story">
+          <h2 id="shore-title">岸上・深坑老街</h2>
+          <p class="lead">我們第一次離開校園，走進深坑老街。紅磚街屋、廟埕、老榕樹與店鋪，後來都進了像素地圖。</p>
+          <p>玩家在街上遇見村民，也能走到現場看看。地方故事就從這裡開始變成可走訪的遊戲。</p>
+          <div class="work-note"><p class="line-label">CHAPTER 02・深坑老街</p><p class="small">2026 春｜GaiaCraft 2.0</p></div>
+          <h3>短片《蓋亞造界・薪火》</h3>
+          <p class="small">記錄深坑炮子崙一位老店主的故事，以及團隊如何把在地知識轉成走訪遊戲。</p>
+          <div class="video-shell" id="video-shell"><button type="button" id="load-video" aria-label="播放短片《蓋亞造界・薪火》，將載入 YouTube 影片"><img src="https://i.ytimg.com/vi/t5pAcjZBMBA/hqdefault.jpg" alt="" loading="lazy"><span>▶ 播放《薪火》</span></button></div>
+          <p class="small muted">按下播放後才會載入 YouTube。</p>
+        </div>
+        <div class="shore-gallery">
+          <figure class="wide"><img src="../../gaiacraft 網頁/img/shenkeng-welcome.jpg" alt="深坑遊戲場景與原有對話框" loading="lazy"><figcaption>遊戲裡的深坑入口</figcaption></figure>
+          <figure><img src="../../gaiacraft 網頁/img/shenkeng-street.jpg" alt="深坑老街騎樓與店鋪的遊戲場景" loading="lazy"><figcaption>老街騎樓</figcaption></figure>
+          <figure><img src="../../gaiacraft 網頁/img/shenkeng-temple.jpg" alt="深坑廟埕與榕樹的遊戲場景" loading="lazy"><figcaption>廟埕與榕樹</figcaption></figure>
+        </div>
+      </div>
+    </section>
+    <div class="waterline" aria-hidden="true"></div>
+    <section class="submerge" id="water" data-stage="入水" aria-labelledby="water-title"><div class="wrap"><h2 id="water-title">入水</h2><p>1987 年翡翠水庫完工後，石碇永安沉入水中。</p></div></section>
+    <section class="underwater" id="yongan" data-stage="永安" aria-labelledby="yongan-title">
+      <div class="underwater-banner"><img src="../../gaiacraft 網頁/img/underwater.jpg" alt="永安遊戲中水底村莊的場景" loading="lazy"><div class="wrap"><p class="line-label">往水底走，回到永安。</p></div></div>
+      <div class="wrap body section">
+        <div class="section-head"><h2 id="yongan-title">水底・石碇永安</h2><p class="lead">團隊走訪老屋、訪談耆老，把地名、茶產業與廟宇信仰等記憶整理成《永安的記憶》小冊，再把素材帶進遊戲。</p></div>
+        <h3>同一個村口，兩種看法</h3>
+        <p>村口那面「失落村莊美景」的牆，照著實地拍下的樣子畫進了遊戲。</p>
+        <div class="compare" data-mobile-view="real" aria-label="永安實景與遊戲場景對照"><img class="game" src="../../gaiacraft 網頁/img/village.jpg" alt="像素版永安村口" loading="lazy"><img class="real" src="../../gaiacraft 網頁/img/yongan-real.jpg" alt="永安村口實景" loading="lazy"><span class="compare-tag">實景</span><span class="compare-tag">遊戲</span></div>
+        <div class="compare-controls"><label for="yongan-range">拖曳比較實景與遊戲</label><input id="yongan-range" type="range" min="0" max="100" value="50" aria-label="永安實景顯示比例"></div>
+        <div class="mobile-switch" role="group" aria-label="永安對照圖片"><button type="button" aria-pressed="true" data-view="real">看實景</button><button type="button" aria-pressed="false" data-view="game">看遊戲</button></div>
+        <div class="story-grid">
+          <div><h3>讓團隊帶你看</h3><button class="dialogue" id="npc" type="button" aria-label="團隊導覽，點擊或按 Enter 閱讀下一句"><span class="who">團隊導覽｜點擊或按 Enter 繼續</span><span id="npc-text">　</span><span class="arrow" aria-hidden="true">▼</span></button><div class="quote-placeholder"><p class="line-label">長輩語錄</p><strong>〔待填：經受訪者授權的原話〕</strong></div></div>
+          <div><div class="mini-work"><p class="line-label">CHAPTER 03・重現永安</p><p>從田野訪談到紀念小冊，再到遊戲裡可以走進去的村莊。</p></div><div class="mini-work"><p class="line-label">CHAPTER 04・沉村之歌</p><p>《永安探險記：沉村之歌》於 2026.09 上架 itch.io，可在網頁遊玩，並提供 Windows 與 macOS 版本。</p><a class="choice light" href="https://frankfangcode.itch.io/gaiacraftyongan" target="_blank" rel="noopener noreferrer">▶ 試玩《沉村之歌》</a></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="section return" id="campus" data-stage="返校" aria-labelledby="campus-title">
+      <div class="wrap">
+        <div class="return-intro"><div><h2 id="campus-title">返校・政大百年</h2><p class="lead">我們把在地方學到的方法帶回政大，從像素地圖走進網頁 3D。校門、校園大道與四維堂，都成了可以探索的場景。</p><p class="small">3D 政大開放狀態：〔待填〕</p><a class="choice dark" href="https://wenzhotw.github.io/nccu100/" target="_blank" rel="noopener noreferrer">▶ 前往 3D 政大</a></div><figure><img src="../../gaiacraft 網頁/img/gate-3d.jpg" alt="3D 政大中的指南路二段校門" loading="lazy"><figcaption>指南路二段・遊戲裡的校門口</figcaption></figure></div>
+        <div class="work-note"><p class="line-label">CHAPTER 05・3D 政大</p><h3>同一座四維堂，兩個版本</h3></div>
+        <div class="compare" data-mobile-view="real" aria-label="政大四維堂像素與 3D 場景對照"><img class="game" src="../../gaiacraft 網頁/img/plaza-3d.jpg" alt="3D 政大四維堂前的場景" loading="lazy"><img class="real" src="../../gaiacraft 網頁/img/campus-pixel.jpg" alt="像素版政大四維堂" loading="lazy"><span class="compare-tag">像素版</span><span class="compare-tag">3D 版</span></div>
+        <div class="compare-controls"><label for="campus-range">拖曳比較像素與 3D</label><input id="campus-range" type="range" min="0" max="100" value="50" aria-label="像素版四維堂顯示比例"></div>
+        <div class="mobile-switch" role="group" aria-label="四維堂對照圖片"><button type="button" aria-pressed="true" data-view="real">看像素版</button><button type="button" aria-pressed="false" data-view="game">看 3D 版</button></div>
+        <div class="next-steps"><div><h3>包種茶節</h3><p>把在地茶文化帶進遊戲，讓玩家在活動現場邊玩邊認識包種茶。這是現站提出的下一步。</p></div><div><h3>校園導覽</h3><p>以 3D 政大為基礎，規劃一條可以實際走一遍的校園路線。</p></div></div>
+        <div class="work-note"><h3>分享你的政大記憶</h3><p>記憶收集入口準備中；同意流程確認後才會開放收件。想討論合作，可先走到接力區。</p><a href="#relay">前往合作入口 →</a></div>
+      </div>
+    </section>
+    <section class="section memory" id="collection" aria-labelledby="memory-title"><div class="wrap"><div class="memory-intro"><h2 id="memory-title">記憶收集冊</h2><p>這裡收的是已公開的作品與紀錄。還沒收到的故事，先保留空格。</p></div><div class="collection">
+      <div class="collect-item"><span class="state">已解鎖｜紀念小冊</span><strong>《永安的記憶》</strong><p class="small">訪談與地方記憶整理後送給長輩。</p></div>
+      <div class="collect-item"><span class="state">已解鎖｜經費支持・落地</span><strong>商學院 LINE 永續驗證</strong><p class="small">師生回報永續行為；排行顯示於商院大廳。獲商學院永續行動提案競賽經費支持。</p></div>
+      <div class="collect-item"><span class="state">已解鎖｜競賽佳作</span><strong>政大 AI 跨域 × 永續創新競賽</strong><p class="small">校園永續版。</p></div>
+      <div class="collect-item"><span class="state">已解鎖｜全國前 20・佳作</span><strong>中鼎永續生活實驗室獎</strong><p class="small">校園永續版。</p></div>
+      <div class="collect-item"><span class="state">已解鎖｜競賽佳作</span><strong>全國人文社會永續行動創新應用競賽</strong><p class="small">GaiaCraft 2.0 深坑老街。</p></div>
+      <div class="collect-item"><span class="state">已解鎖｜報導</span><strong>政大 AI 跨域研究中心專訪</strong><p class="small"><a href="https://iaic.nccu.edu.tw/achievements/59" target="_blank" rel="noopener noreferrer">閱讀報導 →</a></p></div>
+      <div class="collect-item locked"><span class="state">尚未收集</span><strong>你的政大百年記憶</strong><p class="small">投稿同意流程確認後開放。</p><a href="#campus">查看投稿狀態 →</a></div>
+      <div class="collect-item locked"><span class="state">尚未收集</span><strong>下一個地方故事</strong><p class="small">一起談下一段走訪。</p><a href="#relay">洽談合作 →</a></div>
+    </div></div></section>
+    <section class="section party" id="party" aria-labelledby="party-title"><div class="wrap"><div class="party-intro"><div><h2 id="party-title">游泳隊出發</h2><p class="lead">蓋亞造界誕生於政大游泳隊。隊員來自不同科系，像四種泳式一樣，以不同專長互相補位，從零做出第一版。</p></div><p>這個隊伍後來一路走到深坑、永安，也回到校園。先認識現在一起做事的人。</p></div><div class="pool-lanes" aria-label="團隊成員泳道"><div class="lane"><span>泳道 A</span><strong>Wenz</strong><p>共同創辦人・遊戲企劃與美術總監</p></div><div class="lane"><span>泳道 B</span><strong>Frank</strong><p>共同創辦人・技術總監</p></div><div class="lane"><span>泳道 C</span><strong>Andy</strong><p>〔待填：團隊角色〕</p></div></div></div></section>
+    <section class="section relay" id="relay" data-stage="接力" aria-labelledby="relay-title"><div class="wrap"><div class="section-head"><h2 id="relay-title">接力・下一棒交給你</h2><p class="lead">想把記憶做成能走進去的遊戲？選一種你正在做的事，直接找我們聊。</p></div>
+      <div class="tabs" role="tablist" aria-label="合作情境"><button type="button" role="tab" id="tab-alumni" aria-controls="panel-alumni" aria-selected="true" tabindex="0">政大百年與校友</button><button type="button" role="tab" id="tab-usr" aria-controls="panel-usr" aria-selected="false" tabindex="-1">大學 USR 與地方教育</button><button type="button" role="tab" id="tab-esg" aria-controls="panel-esg" aria-selected="false" tabindex="-1">企業 ESG 與媒體策展</button></div>
+      <div id="panel-alumni" class="tab-panel" role="tabpanel" aria-labelledby="tab-alumni" tabindex="0"><h3>一起做校園記憶的下一段</h3><p>以 3D 政大規劃校園導覽，也能從包種茶節活動出發，討論校友與地方文化怎麼走進遊戲。</p><a class="choice light" href="mailto:113306052@g.nccu.edu.tw,113506052@g.nccu.edu.tw?subject=%E6%94%BF%E5%A4%A7%E7%99%BE%E5%B9%B4%E8%88%87%E6%A0%A1%E5%8F%8B%E5%90%88%E4%BD%9C%E6%B4%BD%E8%AB%87">✉ 寄信談政大百年合作</a></div>
+      <div id="panel-usr" class="tab-panel" role="tabpanel" aria-labelledby="tab-usr" tabindex="0" hidden><h3>一起把地方故事帶進教學</h3><p>從走訪與耆老訪談開始，把地景、口述與學習路線整理成可探索的遊戲內容。</p><a class="choice light" href="mailto:113306052@g.nccu.edu.tw,113506052@g.nccu.edu.tw?subject=%E5%A4%A7%E5%AD%B8USR%E8%88%87%E5%9C%B0%E6%96%B9%E6%95%99%E8%82%B2%E5%90%88%E4%BD%9C%E6%B4%BD%E8%AB%87">✉ 寄信談地方教育合作</a></div>
+      <div id="panel-esg" class="tab-panel" role="tabpanel" aria-labelledby="tab-esg" tabindex="0" hidden><h3>一起讓行動與故事被看見</h3><p>討論 LINE 永續行為驗證的校園經驗，或以地方走訪內容做媒體、展覽與活動呈現。</p><a class="choice light" href="mailto:113306052@g.nccu.edu.tw,113506052@g.nccu.edu.tw?subject=%E4%BC%81%E6%A5%ADESG%E8%88%87%E5%AA%92%E9%AB%94%E7%AD%96%E5%B1%95%E5%90%88%E4%BD%9C%E6%B4%BD%E8%AB%87">✉ 寄信談 ESG 與策展合作</a></div>
+      <div class="press" id="press-kit"><h3>Press Kit・事實速覽</h3><p class="small">供採訪與合作初步確認；待確認欄位維持〔待填〕。</p><dl class="facts"><div class="fact"><dt>團隊</dt><dd>蓋亞造界，起源於政治大學游泳隊</dd></div><div class="fact"><dt>作品</dt><dd>校園永續版、深坑老街、石碇永安《沉村之歌》、3D 政大</dd></div><div class="fact"><dt>平台</dt><dd>《沉村之歌》：網頁、Windows、macOS；3D 政大：網頁</dd></div><div class="fact"><dt>上架</dt><dd>《沉村之歌》2026.09 於 itch.io 上架</dd></div><div class="fact"><dt>獎項</dt><dd>政大 AI 跨域 × 永續創新競賽佳作；中鼎永續生活實驗室獎全國前 20・佳作；全國人文社會永續行動創新應用競賽佳作</dd></div><div class="fact"><dt>經費支持</dt><dd>2026 政大商學院永續行動提案競賽；LINE 永續驗證實際落地</dd></div><div class="fact"><dt>聯絡</dt><dd><a href="mailto:113306052@g.nccu.edu.tw">113306052@g.nccu.edu.tw</a><br><a href="mailto:113506052@g.nccu.edu.tw">113506052@g.nccu.edu.tw</a></dd></div><div class="fact"><dt>待確認</dt><dd>3D 政大開放狀態、可授權語錄與投稿同意流程〔待填〕</dd></div></dl><div class="work-note"><h3>合作後怎麼看成果</h3><p>提案指標：記錄遊戲試玩、實地走訪參與及取得授權的地方故事。各項目標值與統計方式〔待填：合作時共同確認〕。</p></div></div>
+    </div></section>
+  </main>
+  <footer><div class="wrap"><h2>這個版本怎麼來的</h2><p>Claude 提出首屏主標、情感入口與合作出口，以及接力的結尾；Codex 提出實景與遊戲同框、可操作的對照、待確認資訊與投稿界線；Gemini 提出深坑與政大百年的旅程安排、泳道式團隊卡及合作情境。三家共同收斂了像素對話框、記憶收集冊、地景取色與旅程標記。</p><p class="small muted">共同討論後的一份示意稿・非正式網站</p></div></footer>
+  <script>
+    (()=>{
+      const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+      const stages=[...document.querySelectorAll('[data-stage]')];
+      const links=[...document.querySelectorAll('.journey a')];
+      const stageObserver=new IntersectionObserver(entries=>{
+        const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+        if(!visible)return;
+        links.forEach(link=>{if(link.getAttribute('href')==='#'+visible.target.id)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current')});
+      },{rootMargin:'-20% 0px -45% 0px',threshold:[0,.15,.4,.7]});
+      stages.forEach(section=>stageObserver.observe(section));
+      const waterline=document.querySelector('.waterline');
+      new IntersectionObserver(entries=>{if(entries[0].isIntersecting){waterline.classList.add('in-view')}},{threshold:.4}).observe(waterline);
+      document.querySelectorAll('.compare').forEach(box=>{
+        const controls=box.nextElementSibling;
+        const range=controls.querySelector('input');
+        range.addEventListener('input',()=>box.style.setProperty('--split',range.value+'%'));
+        const switcher=controls.nextElementSibling;
+        switcher.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{
+          box.dataset.mobileView=button.dataset.view;
+          switcher.querySelectorAll('button').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        }));
+      });
+      const lines=[
+        '這面「失落村莊美景」的牆，是我們照著永安村口實景畫進遊戲的。',
+        '我們走訪老屋、訪談耆老，把地方記憶整理成《永安的記憶》小冊。',
+        '《永安探險記：沉村之歌》在 2026 年 9 月上架 itch.io；你可以直接在網頁遊玩。'
+      ];
+      const npc=document.getElementById('npc');const npcText=document.getElementById('npc-text');
+      let lineIndex=0,character=0,timer=null;
+      function showLine(){clearTimeout(timer);const line=lines[lineIndex];if(reduced.matches){npcText.textContent=line;character=line.length;return}npcText.textContent='';character=0;function type(){npcText.textContent=line.slice(0,++character);if(character<line.length)timer=setTimeout(type,42)}type()}
+      npc.addEventListener('click',()=>{if(character<lines[lineIndex].length){clearTimeout(timer);npcText.textContent=lines[lineIndex];character=lines[lineIndex].length}else{lineIndex=(lineIndex+1)%lines.length;showLine()}});
+      reduced.addEventListener('change',()=>{if(reduced.matches){clearTimeout(timer);npcText.textContent=lines[lineIndex];character=lines[lineIndex].length}});
+      showLine();
+      document.getElementById('load-video').addEventListener('click',()=>{
+        const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/t5pAcjZBMBA?autoplay=1';frame.title='短片《蓋亞造界・薪火》';frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';document.getElementById('video-shell').replaceChildren(frame);
+      });
+      const tabs=[...document.querySelectorAll('[role="tab"]')];
+      function selectTab(tab,focus=false){tabs.forEach(item=>{const selected=item===tab;item.setAttribute('aria-selected',String(selected));item.tabIndex=selected?0:-1;document.getElementById(item.getAttribute('aria-controls')).hidden=!selected});if(focus)tab.focus()}
+      tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>selectTab(tab));tab.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=tabs[(index+1)%tabs.length];else if(event.key==='ArrowLeft')next=tabs[(index+tabs.length-1)%tabs.length];else if(event.key==='Home')next=tabs[0];else if(event.key==='End')next=tabs[tabs.length-1];if(next){event.preventDefault();selectTab(next,true)}})});
+    })();
+  </script>
+</body>
+</html>
